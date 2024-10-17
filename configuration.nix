@@ -10,6 +10,10 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      # Include the disk configuration from nixos-anywhere
+      (modulesPath + "/installer/scan/not-detected.nix")
+      (modulesPath + "/profiles/qemu-guest.nix")
+      ./disk-config.nix
     ];
 
   # Bootloader.
@@ -133,7 +137,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -154,12 +158,17 @@
     fontconfig = {
       enable = true;
       defaultFonts = {
-	monospace = [ "Meslo LG M Regular Nerd Font Complete Mono " ];
-	serif = [ "Noto Serif" "Source Hans Serif" ];
-	sansSerif = [ "Noto Sans" "Source Hans Sans" ];
+        monospace = [ "Meslo LG M Regular Nerd Font Complete Mono " ];
+        serif = [ "Noto Serif" "Source Hans Serif" ];
+        sansSerif = [ "Noto Sans" "Source Hans Sans" ];
       };
     };
   };
+
+  users.users.root.openssh.authorizedKeys.keys = [
+    # change this to your ssh key
+    "CHANGE"
+  ];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
