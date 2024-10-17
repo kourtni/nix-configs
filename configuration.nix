@@ -2,8 +2,6 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-# This configuration was created on and for a VM based NixOS system
-
 { config, pkgs, ... }:
 
 {
@@ -84,7 +82,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.kourtni = {
     isNormalUser = true;
-    description = "<FirstName LastName>";  # TODO: Add your details
+    description = "Kourtni Marshall";
     extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
       kdePackages.kate
@@ -94,7 +92,7 @@
 
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
-  services.displayManager.autoLogin.user = "<your_username>";  # TODO: Add your details
+  services.displayManager.autoLogin.user = "kourtni";
 
   # Install firefox.
   programs.firefox.enable = true;
